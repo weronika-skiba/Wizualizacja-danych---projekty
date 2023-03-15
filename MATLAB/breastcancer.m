@@ -24,3 +24,8 @@ histogram(values_where_M);
 hold off;
 title("Rozkład " + attr);
 legend(labels);
+
+figure(3);
+X = [cancer.radius_mean cancer.concave_points_mean cancer.fractal_dimension_se];
+% Statistics and Machine Learning Toolbox required
+gplotmatrix(X, [], cancer.diagnosis);
