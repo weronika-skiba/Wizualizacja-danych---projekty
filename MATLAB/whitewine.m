@@ -70,7 +70,6 @@ heat.Colormap = parula;
 for i=1:10
    quality_rows = white(white.quality == i, :);
    quality_rows.quality = [];
-
    if ~isempty(quality_rows)
        figure;
        for column = 1:size(quality_rows, 2)
@@ -78,5 +77,6 @@ for i=1:10
            histogram(table2array(quality_rows(:,column)));
            title(quality_rows.Properties.VariableNames(column));
        end
+     sgtitle('Wykres dla jakości ' + string(i));
    end
 end
