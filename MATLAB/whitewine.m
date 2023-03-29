@@ -5,10 +5,47 @@ close all;
 addpath('distributionPlot');
 white = readtable('../datasets/winequality-white.csv');
 
+%% miary zbioru
+
+summary(white);
+
 %% rozkład ocen jakości
 figure(1);
 hist = histogram(white.quality);
 title('Rozkład ocen jakości');
+
+binedges = hist.BinEdges + 0.5;
+binvals = hist.Values;
+
+text(binedges(1:end-1), binvals, num2str(binvals'), 'vert', 'bottom', ...
+    'horiz', 'center');
+    
+%% rozkład ilości alkoholu
+figure(1);
+hist = histogram(white.alcohol);
+title('Rozkład alkoholu ');
+
+binedges = hist.BinEdges + 0.5;
+binvals = hist.Values;
+
+text(binedges(1:end-1), binvals, num2str(binvals'), 'vert', 'bottom', ...
+    'horiz', 'center');
+
+%% rozkład ilości siarki
+figure(1);
+hist = histogram(white.freeSulfurDioxide, 'BinLimits', [0, 100]);
+title('Rozkład ilości siarki ');
+
+binedges = hist.BinEdges + 0.5;
+binvals = hist.Values;
+
+text(binedges(1:end-1), binvals, num2str(binvals'), 'vert', 'bottom', ...
+    'horiz', 'center');
+
+%% rozkład ilości cukru
+figure(1);
+hist = histogram(white.residualSugar, 'BinLimits', [0, 21]);
+title('Rozkład ilości cukru ');
 
 binedges = hist.BinEdges + 0.5;
 binvals = hist.Values;
