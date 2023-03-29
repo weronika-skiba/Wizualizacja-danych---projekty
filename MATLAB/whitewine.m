@@ -65,3 +65,18 @@ figure(2);
 heat = heatmap(white_cols, white_cols, white_corr);
 title('Współczynniki korelacji między cechami');
 heat.Colormap = parula;
+
+%% korelacja między cechami i jakością wina
+for i=1:10
+   quality_rows = white(white.quality == i, :);
+   quality_rows.quality = [];
+
+   if ~isempty(quality_rows)
+       figure;
+       for column = 1:size(quality_rows, 2)
+           subplot(3, 4, column);
+           histogram(table2array(quality_rows(:,column)));
+           title(quality_rows.Properties.VariableNames(column));
+       end
+   end
+end
