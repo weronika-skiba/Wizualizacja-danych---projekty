@@ -2,7 +2,6 @@ clc;
 clear;
 close all;
 
-addpath('distributionPlot');
 white = readtable('../datasets/winequality-white.csv');
 
 %% miary zbioru
