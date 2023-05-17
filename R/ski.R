@@ -31,3 +31,10 @@ ggplot(data = world) +
   scale_fill_viridis_c(option = "plasma", trans = "sqrt") +
   xlab("Longitude") + ylab("Latitude") +
   ggtitle("Resorty narciarskie na świecie") 
+
+# wykres 2 - barplot ilosci stokow
+
+resorts_count_slice = resorts_count[1:10, ]
+ggplot(resorts_count_slice, aes(x=reorder(Country, desc(nResorts)), y=nResorts)) + 
+  geom_bar(stat = "identity")
+
