@@ -14,7 +14,7 @@ ski <- read.csv('../datasets/ski-resorts.csv')
 
 for (col in names(ski)) {
     # Calculate the frequency of each category
-    freq <- table(ski)
+    freq <- table(ski[col])
 
     # Create a bar plot
     barplot(freq, main = "Histogram", xlab = col, ylab = "Frequency")
