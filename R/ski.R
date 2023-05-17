@@ -12,6 +12,14 @@ library("dplyr")
 world <- ne_countries(scale = "medium", returnclass = "sf")
 ski <- read.csv('../datasets/ski-resorts.csv')
 
+for (col in names(ski)) {
+    # Calculate the frequency of each category
+    freq <- table(ski[col])
+
+    # Create a bar plot
+    barplot(freq, main = "Histogram", xlab = col, ylab = "Frequency")
+}
+
 # wykres 1 - zliczenie stokow w kazdym panstwie
 resorts_count <- ski %>% count(Country, name="nResorts", sort=TRUE)
 nResortsWhole = c()
