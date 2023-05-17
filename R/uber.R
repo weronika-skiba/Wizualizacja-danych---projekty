@@ -45,7 +45,7 @@ for (col in 2:ncol(uber)) {
 }
 
 # hist(uber$fare_amount, col = 'skyblue3', breaks = 30)
-hist(uber$passenger_count, , col = 'skyblue3', breaks = 6)
+hist(uber$passenger_count, col = 'skyblue3', breaks = 6)
 
 # Column histogram with range
 selected_values <- select_values_within_range(uber, "fare_amount", 0, 50)
