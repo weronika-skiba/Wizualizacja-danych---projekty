@@ -47,4 +47,32 @@ ggplot(data = world) +
   geom_sf(aes(fill = allMeds)) +
   scale_fill_viridis_c(option = "plasma", trans = "sqrt") +
   xlab("Longitude") + ylab("Latitude") +
-  ggtitle("Wszystkie zdobyte medale") 
+  ggtitle("Wszystkie zdobyte medale")
+
+
+tabledata <- table(olympics$Year)
+barplot(tabledata, main='Year', ylab="Count", las=2)
+
+tabledata <- table(olympics$Sport)
+tabledata <- tabledata[tabledata > 2000]
+print(tabledata)
+barplot(tabledata, main='Sport with frequency > 2000', ylab="Count", las=2)
+
+
+tabledata <- table(olympics$Sport)
+tabledata <- tabledata[tabledata > 5000]
+print(tabledata)
+barplot(tabledata, main='Sport with frequency > 5000', ylab="Count", las=2)
+
+
+tabledata <- table(olympics$Sport)
+tabledata <- tabledata[tabledata < 50]
+print(tabledata)
+barplot(tabledata, main='Sport with frequency < 100', ylab="Count", las=2)
+
+tabledata <- table(olympics$Type)
+print(tabledata)
+barplot(tabledata, main='Type of event', ylab="Count", las=2)
+
+
+
