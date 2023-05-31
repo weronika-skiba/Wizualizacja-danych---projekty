@@ -25,7 +25,7 @@ goldMedalsCount <- goldMedals %>%
 
 amc = c()
 gmc = c()
-for (panstwo in world$name) {
+for (panstwo in world$name_sort) {
   if (panstwo %in% allMedalsCount$Country) {
     n = allMedalsCount[match(panstwo,allMedalsCount$Country), 2]
     amc <- c(amc, n)
@@ -42,9 +42,26 @@ for (panstwo in world$name) {
 world['allMeds'] <- amc
 world['goldMeds'] <- gmc
 
-# wykres 1 - mapa, medale na siwecie
+# wykres 1 - slupki medali
+allmeds_count_slice = allMedalsCount[order(allMedalsCount$total_count, decreasing=TRUE),][2:16,]
+ggplot(allmeds_count_slice, aes(x=reorder(Country, desc(total_count)), y=total_count)) + 
+  geom_bar(stat = "identity") + ggtitle("Wszystkie zdobyte medale") 
+
+# wykres 2 - mapa, medale na siwecie
 ggplot(data = world) +
   geom_sf(aes(fill = allMeds)) +
   scale_fill_viridis_c(option = "plasma", trans = "sqrt") +
   xlab("Longitude") + ylab("Latitude") +
   ggtitle("Wszystkie zdobyte medale") 
+
+# wykres 3 - slupki zlotych medali
+goldmeds_count_slice = goldMedalsCount[order(goldMedalsCount$total_count, decreasing=TRUE),][2:16,]
+ggplot(goldmeds_count_slice, aes(x=reorder(Country, desc(total_count)), y=total_count)) + 
+  geom_bar(stat = "identity") + ggtitle("Zdobyte złote medale") 
+
+# wykres 4 - mapa, zlote medale na siwecie
+ggplot(data = world) +
+  geom_sf(aes(fill = goldMeds)) +
+  scale_fill_viridis_c(option = "plasma", trans = "sqrt") +
+  xlab("Longitude") + ylab("Latitude") +
+  ggtitle("Zdobyte złote medale") 
