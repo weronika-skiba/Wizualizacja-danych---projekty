@@ -9,6 +9,40 @@ library("dplyr")
 world <- ne_countries(scale = "medium", returnclass = "sf")
 olympics <- read.csv('../datasets/olympics.csv', sep = ";")
 
+tabledata <- table(olympics$Year)
+barplot(tabledata, main='Year', ylab="Count", las=2)
+
+tabledata <- table(olympics$Sport)
+tabledata <- tabledata[tabledata > 2000]
+barplot(tabledata, main='Sport with frequency > 2000', ylab="Count", las=2)
+
+tabledata <- table(olympics$Sport)
+tabledata <- tabledata[tabledata > 5000]
+barplot(tabledata, main='Sport with frequency > 5000', ylab="Count", las=2)
+
+
+tabledata <- table(olympics$Sport)
+tabledata <- tabledata[tabledata < 50]
+barplot(tabledata, main='Sport with frequency < 100', ylab="Count", las=2)
+
+tabledata <- table(olympics$Type)
+barplot(tabledata, main='Type of event', ylab="Count", las=2)
+
+olympics_Germany <- olympics[olympics$Country == 'Germany', ]
+tabledata <- table(olympics_Germany$Sport)
+tabledata <- tabledata[tabledata > 50]
+barplot(tabledata, main='Sports for Germany', ylab="Count", las=2)
+
+olympics_Poland <- olympics[olympics$Country == 'Poland', ]
+tabledata <- table(olympics_Poland$Sport)
+tabledata <- tabledata[tabledata > 50]
+barplot(tabledata, main='Sports for Poland <3', ylab="Count", las=2)
+
+olympics_France <- olympics[olympics$Country == 'France', ]
+tabledata <- table(olympics_France$Sport)
+tabledata <- tabledata[tabledata > 50]
+barplot(tabledata, main='Sports for France', ylab="Count", las=2)
+
 # zliczenie medali na panstwo, dodanie tego do world dla wygody
 allMedals = olympics[olympics$Place <= 3,]
 goldMedals = olympics[olympics$Place == 1,]
@@ -52,7 +86,7 @@ ggplot(data = world) +
   geom_sf(aes(fill = allMeds)) +
   scale_fill_viridis_c(option = "plasma", trans = "sqrt") +
   xlab("Longitude") + ylab("Latitude") +
-  ggtitle("Wszystkie zdobyte medale") 
+  ggtitle("Wszystkie zdobyte medale")
 
 # wykres 3 - slupki zlotych medali
 goldmeds_count_slice = goldMedalsCount[order(goldMedalsCount$total_count, decreasing=TRUE),][2:16,]
